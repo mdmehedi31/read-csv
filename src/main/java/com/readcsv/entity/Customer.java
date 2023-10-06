@@ -19,6 +19,11 @@ public class Customer {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "employees")
+    private int employees;
+    @Column(name = "rating")
+    private double rating;
+
 
     public Date getCreated() {
         return created;
@@ -52,8 +57,5 @@ public class Customer {
         this.rating = rating;
     }
 
-    @Column(name = "employees")
-    private int employees;
-    @Column(name = "rating")
-    private double rating;
+
 }
