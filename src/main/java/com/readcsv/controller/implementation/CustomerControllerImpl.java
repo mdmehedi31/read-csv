@@ -1,6 +1,7 @@
 package com.readcsv.controller.implementation;
 
 import com.readcsv.controller.definitons.CustomerControllerDef;
+import com.readcsv.dto.response.CustomerResponse;
 import com.readcsv.service.definitions.CustomerServiceDefinition;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -60,5 +61,12 @@ public class CustomerControllerImpl implements CustomerControllerDef {
 
 
         return result;
+    }
+
+    @Override
+    public List<CustomerResponse> getAllCustomer() {
+
+        List<CustomerResponse> getAllCustomer= this.customerServiceDefinition.getAllCustomerListSortByName();
+        return getAllCustomer;
     }
 }
