@@ -31,10 +31,6 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
     public String Save(MultipartFile file) throws IOException {
 
         List<CustomerRequest> customerList=CsvTOCustomer(file);
-
-        for (CustomerRequest customerRequest : customerList){
-            System.out.println("Name "+customerRequest.getName()+", Employees "+customerRequest.getEmployees()+", Rating "+customerRequest.getRating());
-        }
         this.customerRepository.saveAll(dtoToEntity(customerList));
 
         return "Save Successful";
