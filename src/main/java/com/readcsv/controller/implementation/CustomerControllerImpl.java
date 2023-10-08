@@ -27,6 +27,7 @@ public class CustomerControllerImpl implements CustomerControllerDef {
     public String uploadCSV(MultipartFile file) throws IOException {
 
 
+        System.out.println("This is from Upload CSV method...");
         String result = this.customerServiceDefinition.Save(file);
        /* BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(file.getInputStream(), "UTF-8"));
         CSVParser csvParser = new CSVParser(bufferedReader,
