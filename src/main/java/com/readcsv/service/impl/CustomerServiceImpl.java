@@ -6,19 +6,17 @@ import com.readcsv.dto.response.CustomerResponse;
 import com.readcsv.entity.Customer;
 import com.readcsv.repository.CustomerRepository;
 import com.readcsv.service.definitions.CustomerServiceDefinition;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+
+
 import java.util.*;
 
-import static com.fasterxml.jackson.databind.type.LogicalType.DateTime;
+
 
 @Service
 public class CustomerServiceImpl implements CustomerServiceDefinition {
@@ -28,14 +26,92 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
     private CustomerRepository customerRepository;
 
     @Override
-    public String Save(List<CustomerRequest> customerRequests) throws IOException {
-
-     //   List<CustomerRequest> customerList=CsvTOCustomer(file);
+    public String Save(List<CustomerRequest> customerRequests)  {
         this.customerRepository.saveAll(dtoToEntity(customerRequests));
 
         return "Save Successful";
     }
+    @Override
+    public List<Customer> dtoToEntity(List<CustomerRequest> customerRequests) {
 
+        List<Customer> customerList = new ArrayList<>();
+
+        for (CustomerRequest customerRequest : customerRequests){
+
+            Customer findCustomer=findByName(customerRequest.getName());
+            if(findCustomer!=null){
+                String retMessag= updateValue(findCustomer,customerRequest);
+                System.out.println("Your result is "+retMessag);
+            }
+            else{
+                Customer customer = new Customer();
+
+                customer.setName(customerRequest.getName());
+                customer.setEmployees(customerRequest.getEmployees());
+                customer.setRating(customerRequest.getRating());
+                customer.setCreated(new Date());
+
+
+                customerList.add(customer);
+            }
+
+        }
+
+        return customerList;
+    }
+
+    @Override
+    public List<CustomerResponse> getAllCustomerListSortByName() {
+        //findAllSortedByName();
+
+        Sort sort= Sort.by(Sort.Direction.ASC,"name");
+        List<Customer> getAllCustomer = this.customerRepository.findAll(sort);
+
+        List<CustomerResponse> customersList = entityToDto(getAllCustomer);
+
+
+        return customersList;
+    }
+
+    @Override
+    public List<CustomerResponse> entityToDto(List<Customer> customerList) {
+
+        List<CustomerResponse> getAllCustomer= new ArrayList<>();
+
+        for (Customer customer : customerList){
+            CustomerResponse customerResponse = new CustomerResponse();
+
+            customerResponse.setName(customer.getName());
+            customerResponse.setEmployees(customer.getEmployees());
+            customerResponse.setRating(customer.getRating());
+            customerResponse.setCreated(customer.getCreated());
+
+            getAllCustomer.add(customerResponse);
+        }
+
+
+        return getAllCustomer;
+    }
+
+    @Override
+    public Customer findByName(String name) {
+
+        return customerRepository.findByName(name);
+    }
+
+    public String updateValue(Customer customer, CustomerRequest customerRequest){
+
+        customer.setName(customerRequest.getName());
+        customer.setEmployees(customerRequest.getEmployees());
+        customer.setRating(customerRequest.getRating());
+
+        this.customerRepository.save(customer);
+
+        return "Update Successfull";
+    }
+
+
+    // for multipart result
 //    @Override
 //    public List<CustomerRequest> CsvTOCustomer(MultipartFile file) throws IOException {
 //
@@ -67,58 +143,4 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
 //        return customerList;
 //    }
 
-    @Override
-    public List<Customer> dtoToEntity(List<CustomerRequest> customerRequests) {
-
-        List<Customer> customerList = new ArrayList<>();
-
-        for (CustomerRequest customerRequest : customerRequests){
-
-            Customer customer = new Customer();
-
-            customer.setName(customerRequest.getName());
-           // int emplyoees= Integer.parseInt(customerRequest.getEmployees());
-            customer.setEmployees(customerRequest.getEmployees());
-            customer.setRating(customerRequest.getRating());
-            customer.setCreated(new Date());
-
-            customerList.add(customer);
-
-        }
-
-        return customerList;
-    }
-
-    @Override
-    public List<CustomerResponse> getAllCustomerListSortByName() {
-        //findAllSortedByName();
-
-        Sort sort= Sort.by(Sort.Direction.ASC,"name");
-        List<Customer> getAllCustomer = this.customerRepository.findAll(sort);
-
-        List<CustomerResponse> customers = entityToDto(getAllCustomer);
-
-
-        return customers;
-    }
-
-    @Override
-    public List<CustomerResponse> entityToDto(List<Customer> customerList) {
-
-        List<CustomerResponse> getAllCustomer= new ArrayList<>();
-
-        for (Customer customer : customerList){
-            CustomerResponse customerResponse = new CustomerResponse();
-
-            customerResponse.setName(customer.getName());
-            customerResponse.setEmployees(customer.getEmployees());
-            customerResponse.setRating(customer.getRating());
-            customerResponse.setCreated(customer.getCreated());
-
-            getAllCustomer.add(customerResponse);
-        }
-
-
-        return getAllCustomer;
-    }
 }

@@ -3,6 +3,7 @@ package com.readcsv.controller.definitons;
 
 import com.readcsv.dto.request.CustomerRequest;
 import com.readcsv.dto.response.CustomerResponse;
+import com.readcsv.entity.Customer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,4 +19,8 @@ public interface CustomerControllerDef {
 
     @GetMapping("/get-all-customer")
     List<CustomerResponse> getAllCustomer();
+
+
+    @GetMapping("/get-by-name/{name}")
+    Customer findByName(@PathVariable String name);
 }

@@ -3,6 +3,7 @@ package com.readcsv.controller.implementation;
 import com.readcsv.controller.definitons.CustomerControllerDef;
 import com.readcsv.dto.request.CustomerRequest;
 import com.readcsv.dto.response.CustomerResponse;
+import com.readcsv.entity.Customer;
 import com.readcsv.repository.CustomerRepository;
 import com.readcsv.service.definitions.CustomerServiceDefinition;
 import org.apache.commons.csv.CSVFormat;
@@ -41,5 +42,10 @@ public class CustomerControllerImpl implements CustomerControllerDef {
 
         List<CustomerResponse> getAllCustomer= this.customerServiceDefinition.getAllCustomerListSortByName();
         return getAllCustomer;
+    }
+
+    @Override
+    public Customer findByName(String name) {
+        return this.customerServiceDefinition.findByName(name);
     }
 }

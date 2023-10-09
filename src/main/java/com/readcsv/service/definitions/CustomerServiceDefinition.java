@@ -21,4 +21,6 @@ public interface CustomerServiceDefinition {
     List<CustomerResponse> getAllCustomerListSortByName();
 
     List<CustomerResponse> entityToDto(List<Customer> customerList);
+
+    Customer findByName(String name);
 }
