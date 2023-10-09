@@ -1,6 +1,7 @@
 package com.readcsv.controller.definitons;
 
 
+import com.readcsv.dto.request.CustomerRequest;
 import com.readcsv.dto.response.CustomerResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.util.List;
 public interface CustomerControllerDef {
 
     @PostMapping("/upload-csv")
-    String uploadCSV(@RequestParam("file") MultipartFile file) throws IOException;
+    String uploadCSV(@RequestBody List<CustomerRequest> customerRequestList) throws IOException;
 
     @GetMapping("/get-all-customer")
     List<CustomerResponse> getAllCustomer();

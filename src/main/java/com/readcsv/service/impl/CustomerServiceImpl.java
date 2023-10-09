@@ -28,44 +28,44 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
     private CustomerRepository customerRepository;
 
     @Override
-    public String Save(MultipartFile file) throws IOException {
+    public String Save(List<CustomerRequest> customerRequests) throws IOException {
 
-        List<CustomerRequest> customerList=CsvTOCustomer(file);
-        this.customerRepository.saveAll(dtoToEntity(customerList));
+     //   List<CustomerRequest> customerList=CsvTOCustomer(file);
+        this.customerRepository.saveAll(dtoToEntity(customerRequests));
 
         return "Save Successful";
     }
 
-    @Override
-    public List<CustomerRequest> CsvTOCustomer(MultipartFile file) throws IOException {
-
-
-
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(file.getInputStream(), "UTF-8"));
-
-
-        CSVFormat format = CSVFormat.RFC4180.builder().setAllowMissingColumnNames(true).
-                setHeader("Name","Employees","Rating").setSkipHeaderRecord(true).build();
-
-        CSVParser csvParser = new CSVParser(bufferedReader, format);
-
-          List<CustomerRequest> customerList= new ArrayList<>();
-
-        for (CSVRecord record : csvParser) {
-
-            String name= record.get(0);
-            int employees = Integer.parseInt(record.get(1));
-            double rating= Double.parseDouble(record.get(2));
-
-            CustomerRequest customerRequest = new CustomerRequest();
-            customerRequest.setName(name);
-            customerRequest.setEmployees(employees);
-            customerRequest.setRating(rating);
-
-            customerList.add(customerRequest);
-        }
-        return customerList;
-    }
+//    @Override
+//    public List<CustomerRequest> CsvTOCustomer(MultipartFile file) throws IOException {
+//
+//
+//
+//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(file.getInputStream(), "UTF-8"));
+//
+//
+//        CSVFormat format = CSVFormat.RFC4180.builder().setAllowMissingColumnNames(true).
+//                setHeader("Name","Employees","Rating").setSkipHeaderRecord(true).build();
+//
+//        CSVParser csvParser = new CSVParser(bufferedReader, format);
+//
+//          List<CustomerRequest> customerList= new ArrayList<>();
+//
+//        for (CSVRecord record : csvParser) {
+//
+//            String name= record.get(0);
+//            int employees = Integer.parseInt(record.get(1));
+//            double rating= Double.parseDouble(record.get(2));
+//
+//            CustomerRequest customerRequest = new CustomerRequest();
+//            customerRequest.setName(name);
+//          //  customerRequest.setEmployees(employees);
+//            customerRequest.setRating(rating);
+//
+//            customerList.add(customerRequest);
+//        }
+//        return customerList;
+//    }
 
     @Override
     public List<Customer> dtoToEntity(List<CustomerRequest> customerRequests) {
@@ -77,6 +77,7 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
             Customer customer = new Customer();
 
             customer.setName(customerRequest.getName());
+           // int emplyoees= Integer.parseInt(customerRequest.getEmployees());
             customer.setEmployees(customerRequest.getEmployees());
             customer.setRating(customerRequest.getRating());
             customer.setCreated(new Date());

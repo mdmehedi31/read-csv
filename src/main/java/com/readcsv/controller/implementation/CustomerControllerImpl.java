@@ -1,7 +1,9 @@
 package com.readcsv.controller.implementation;
 
 import com.readcsv.controller.definitons.CustomerControllerDef;
+import com.readcsv.dto.request.CustomerRequest;
 import com.readcsv.dto.response.CustomerResponse;
+import com.readcsv.repository.CustomerRepository;
 import com.readcsv.service.definitions.CustomerServiceDefinition;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -24,41 +26,11 @@ public class CustomerControllerImpl implements CustomerControllerDef {
     private CustomerServiceDefinition customerServiceDefinition;
 
     @Override
-    public String uploadCSV(MultipartFile file) throws IOException {
+    public String uploadCSV(List<CustomerRequest> customerRequestList) throws IOException {
 
 
         System.out.println("This is from Upload CSV method...");
-        String result = this.customerServiceDefinition.Save(file);
-       /* BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(file.getInputStream(), "UTF-8"));
-        CSVParser csvParser = new CSVParser(bufferedReader,
-                CSVFormat.DEFAULT);
-        Iterable<CSVRecord> csvRecords = csvParser.getRecords();
-
-        System.out.println("Your input data is");
-
-        for (CSVRecord record : csvRecords) {
-
-            String rc0=record.get(0);
-            String rc1= record.get(1);
-            int rc2= Integer.parseInt(record.get(2));
-            double rc3= Double.parseDouble(record.get(3));
-
-
-            System.out.println(rc0 + ", " + rc1 + ", " + rc2 + ", " + rc3);
-        }*/
-//            byte[] bytes = file.getBytes();
-//            String csvContents = new String(bytes);
-//
-//            Reader reader= new FileReader(csvContents);
-//
-//            CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
-//
-//            System.out.println("Hello this is from controller method.");
-//            System.out.println("Your CSV File Data Is: ");
-//            for (CSVRecord record : csvParser){
-//
-//                System.out.println(record.get(0)+", "+record.get(1)+", "+record.get(2)+", "+record.get(3));
-//            }
+        String result = this.customerServiceDefinition.Save(customerRequestList);
 
 
         return result;
