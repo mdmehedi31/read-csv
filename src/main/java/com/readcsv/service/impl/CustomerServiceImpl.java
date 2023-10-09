@@ -93,8 +93,8 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
             CustomerResponse customerResponse = new CustomerResponse();
 
             customerResponse.setCompanyName(customer.getCompanyName());
-            customerResponse.setEmployees(customer.getNumberOfEmployees());
-            customerResponse.setRating(customer.getEmployeesRating());
+            customerResponse.setNumberOfEmployees(customer.getNumberOfEmployees());
+            customerResponse.setEmployeesRating(customer.getEmployeesRating());
             customerResponse.setCreated(customer.getCreated());
 
             getAllCustomer.add(customerResponse);

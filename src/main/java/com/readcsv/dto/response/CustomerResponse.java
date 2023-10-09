@@ -28,19 +28,19 @@ public class CustomerResponse {
         this.companyName = companyName;
     }
 
-    public int getEmployees() {
+    public int getNumberOfEmployees() {
         return numberOfEmployees;
     }
 
-    public void setEmployees(int numberOfEmployees) {
+    public void setNumberOfEmployees(int numberOfEmployees) {
         this.numberOfEmployees = numberOfEmployees;
     }
 
-    public double getRating() {
+    public double getEmployeesRating() {
         return employeesRating;
     }
 
-    public void setRating(double employeesRating) {
+    public void setEmployeesRating(double employeesRating) {
         this.employeesRating = employeesRating;
     }
 }

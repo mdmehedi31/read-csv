@@ -40,6 +40,7 @@ public class CustomerControllerImpl implements CustomerControllerDef {
     public List<CustomerResponse> getAllCustomerList() {
 
         List<CustomerResponse> getAllCustomer= this.customerServiceDefinition.getAllCustomerListSortByName();
+
         return getAllCustomer;
     }
 
