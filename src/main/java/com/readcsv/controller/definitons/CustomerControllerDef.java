@@ -21,6 +21,6 @@ public interface CustomerControllerDef {
     List<CustomerResponse> getAllCustomer();
 
 
-    @GetMapping("/get-by-name/{name}")
-    Customer findByName(@PathVariable String name);
+//    @GetMapping("/get-by-name/{name}")
+//    Customer findByName(@PathVariable String name);
 }

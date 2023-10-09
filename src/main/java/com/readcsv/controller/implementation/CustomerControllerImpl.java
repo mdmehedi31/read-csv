@@ -44,8 +44,8 @@ public class CustomerControllerImpl implements CustomerControllerDef {
         return getAllCustomer;
     }
 
-    @Override
-    public Customer findByName(String name) {
-        return this.customerServiceDefinition.findByName(name);
-    }
+//    @Override
+//    public Customer findByName(String name) {
+//        return this.customerServiceDefinition.findByName(name);
+//    }
 }
