@@ -18,7 +18,7 @@ public interface CustomerControllerDef {
     String uploadCSV(@RequestBody List<CustomerRequest> customerRequestList) throws IOException;
 
     @GetMapping("/get-all-customer")
-    List<CustomerResponse> getAllCustomer();
+    List<CustomerResponse> getAllCustomerList();
 
 
 //    @GetMapping("/get-by-name/{name}")

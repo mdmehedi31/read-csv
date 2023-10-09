@@ -12,7 +12,7 @@ import java.util.Set;
 
 public interface CustomerServiceDefinition {
 
-    String Save(List<CustomerRequest> customerRequests) throws IOException;
+    String SaveCustomerInfo(List<CustomerRequest> customerRequests) throws IOException;
 
     //List<CustomerRequest> CsvTOCustomer(MultipartFile file) throws IOException;
 

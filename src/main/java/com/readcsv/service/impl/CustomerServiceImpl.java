@@ -25,51 +25,62 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @Override
-    public String Save(List<CustomerRequest> customerRequests)  {
-        this.customerRepository.saveAll(dtoToEntity(customerRequests));
 
+    /*
+    * SaveCustomerInfo() method store the data into DB
+    * */
+    @Override
+    public String SaveCustomerInfo(List<CustomerRequest> customerRequests)  {
+        this.customerRepository.saveAll(dtoToEntity(customerRequests));
         return "Save Successful";
     }
+
+    /*
+    * Using dtoToEntity() method, i convert the data from request data to entity data
+    * and return it.
+    * */
     @Override
     public List<Customer> dtoToEntity(List<CustomerRequest> customerRequests) {
 
-        List<Customer> customerList = new ArrayList<>();
+        List<Customer> getCustomerList = new ArrayList<>();
 
         for (CustomerRequest customerRequest : customerRequests){
 
-            Customer findCustomer=findByName(customerRequest.getName());
+            Customer findCustomer=findByName(customerRequest.getCompanyName());
             if(findCustomer!=null){
-                String retMessag= updateValue(findCustomer,customerRequest);
-                System.out.println("Your result is "+retMessag);
+                String updateMessage= updateValue(findCustomer,customerRequest);
+                System.out.println("Your result is "+updateMessage);
             }
             else{
-                Customer customer = new Customer();
+                Customer aCustomer = new Customer();
 
-                customer.setName(customerRequest.getName());
-                customer.setEmployees(customerRequest.getEmployees());
-                customer.setRating(customerRequest.getRating());
-                customer.setCreated(new Date());
+                aCustomer.setCompanyName(customerRequest.getCompanyName());
+                aCustomer.setNumberOfEmployees(customerRequest.getNumberOfEmployees());
+                aCustomer.setEmployeesRating(customerRequest.getEmployeesRating());
+                aCustomer.setCreated(new Date());
 
 
-                customerList.add(customer);
+                getCustomerList.add(aCustomer);
             }
 
         }
 
-        return customerList;
+        return getCustomerList;
     }
 
+
+    /*
+    * this method return the list of customer, it's return sorted data, which is sort as
+    * ascending order by company name.
+    * */
     @Override
     public List<CustomerResponse> getAllCustomerListSortByName() {
         //findAllSortedByName();
 
-        Sort sort= Sort.by(Sort.Direction.ASC,"name");
+        Sort sort= Sort.by(Sort.Direction.ASC,"companyName");
         List<Customer> getAllCustomer = this.customerRepository.findAll(sort);
 
         List<CustomerResponse> customersList = entityToDto(getAllCustomer);
-
-
         return customersList;
     }
 
@@ -81,9 +92,9 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
         for (Customer customer : customerList){
             CustomerResponse customerResponse = new CustomerResponse();
 
-            customerResponse.setName(customer.getName());
-            customerResponse.setEmployees(customer.getEmployees());
-            customerResponse.setRating(customer.getRating());
+            customerResponse.setCompanyName(customer.getCompanyName());
+            customerResponse.setEmployees(customer.getNumberOfEmployees());
+            customerResponse.setRating(customer.getEmployeesRating());
             customerResponse.setCreated(customer.getCreated());
 
             getAllCustomer.add(customerResponse);
@@ -93,17 +104,27 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
         return getAllCustomer;
     }
 
-    @Override
-    public Customer findByName(String name) {
 
-        return customerRepository.findByName(name);
+    /*
+    * this method call the Customer Repository and find the data based on provided name
+    * and it's return Customer types data.
+    * */
+    @Override
+    public Customer findByName(String companyName) {
+
+        return customerRepository.findByCompanyName(companyName);
     }
 
+    /*
+    * While we want to store any value in DB, which is already exist in the DB,
+    * then we just update that data based on new data.
+    * so this function mainly update the data which is already existing the DB.
+    * */
     public String updateValue(Customer customer, CustomerRequest customerRequest){
 
-        customer.setName(customerRequest.getName());
-        customer.setEmployees(customerRequest.getEmployees());
-        customer.setRating(customerRequest.getRating());
+        customer.setCompanyName(customerRequest.getCompanyName());
+        customer.setNumberOfEmployees(customerRequest.getNumberOfEmployees());
+        customer.setEmployeesRating(customerRequest.getEmployeesRating());
 
         this.customerRepository.save(customer);
 

@@ -17,12 +17,12 @@ public class Customer {
     @Column(name = "created")
     private Date created;
     @Column(name = "name")
-    private String name;
+    private String companyName;
 
     @Column(name = "employees")
-    private int employees;
+    private int numberOfEmployees;
     @Column(name = "rating")
-    private double rating;
+    private double employeesRating;
 
 
     public Date getCreated() {
@@ -33,28 +33,28 @@ public class Customer {
         this.created = created;
     }
 
-    public String getName() {
-        return name;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
-    public int getEmployees() {
-        return employees;
+    public int getNumberOfEmployees() {
+        return numberOfEmployees;
     }
 
-    public void setEmployees(int employees) {
-        this.employees = employees;
+    public void setNumberOfEmployees(int numberOfEmployees) {
+        this.numberOfEmployees = numberOfEmployees;
     }
 
-    public double getRating() {
-        return rating;
+    public double getEmployeesRating() {
+        return employeesRating;
     }
 
-    public void setRating(double rating) {
-        this.rating = rating;
+    public void setEmployeesRating(double employeesRating) {
+        this.employeesRating = employeesRating;
     }
 
 

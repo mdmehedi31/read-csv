@@ -8,9 +8,9 @@ import java.util.Date;
 public class CustomerResponse {
 
     private Date created;
-    private String name;
-    private int employees;
-    private double rating;
+    private String companyName;
+    private int numberOfEmployees;
+    private double employeesRating;
 
     public Date getCreated() {
         return created;
@@ -20,27 +20,27 @@ public class CustomerResponse {
         this.created = created;
     }
 
-    public String getName() {
-        return name;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public int getEmployees() {
-        return employees;
+        return numberOfEmployees;
     }
 
-    public void setEmployees(int employees) {
-        this.employees = employees;
+    public void setEmployees(int numberOfEmployees) {
+        this.numberOfEmployees = numberOfEmployees;
     }
 
     public double getRating() {
-        return rating;
+        return employeesRating;
     }
 
-    public void setRating(double rating) {
-        this.rating = rating;
+    public void setRating(double employeesRating) {
+        this.employeesRating = employeesRating;
     }
 }

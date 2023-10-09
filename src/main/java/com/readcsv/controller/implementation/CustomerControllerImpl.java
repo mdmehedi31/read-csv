@@ -26,19 +26,18 @@ public class CustomerControllerImpl implements CustomerControllerDef {
     @Autowired
     private CustomerServiceDefinition customerServiceDefinition;
 
+
+
     @Override
     public String uploadCSV(List<CustomerRequest> customerRequestList) throws IOException {
-
-
         System.out.println("This is from Upload CSV method...");
-        String result = this.customerServiceDefinition.Save(customerRequestList);
-
+        String result = this.customerServiceDefinition.SaveCustomerInfo(customerRequestList);
 
         return result;
     }
 
     @Override
-    public List<CustomerResponse> getAllCustomer() {
+    public List<CustomerResponse> getAllCustomerList() {
 
         List<CustomerResponse> getAllCustomer= this.customerServiceDefinition.getAllCustomerListSortByName();
         return getAllCustomer;
