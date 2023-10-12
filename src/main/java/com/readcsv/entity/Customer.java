@@ -4,6 +4,7 @@ package com.readcsv.entity;
 import jakarta.persistence.*;
 ;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -15,21 +16,21 @@ public class Customer {
     private Long id;
 
     @Column(name = "created")
-    private Date created;
+    private LocalDateTime created;
     @Column(name = "name")
     private String companyName;
 
     @Column(name = "employees")
-    private int numberOfEmployees;
+    private double numberOfEmployees;
     @Column(name = "rating")
     private double employeesRating;
 
 
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
@@ -41,11 +42,11 @@ public class Customer {
         this.companyName = companyName;
     }
 
-    public int getNumberOfEmployees() {
+    public double getNumberOfEmployees() {
         return numberOfEmployees;
     }
 
-    public void setNumberOfEmployees(int numberOfEmployees) {
+    public void setNumberOfEmployees(double numberOfEmployees) {
         this.numberOfEmployees = numberOfEmployees;
     }
 

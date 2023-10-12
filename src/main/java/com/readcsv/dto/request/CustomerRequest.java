@@ -1,13 +1,14 @@
 package com.readcsv.dto.request;
 
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class CustomerRequest {
 
-    private Date created;
+    private LocalDateTime created;
     private String companyName;
-    private int numberOfEmployees;
+    private double numberOfEmployees;
     private double employeesRating;
 
 //    public CustomerRequest(String name, int employees, double rating) {
@@ -17,12 +18,12 @@ public class CustomerRequest {
 //    }
 
 
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
-        this.created = new Date();
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
     public String getCompanyName() {
@@ -33,11 +34,11 @@ public class CustomerRequest {
         this.companyName = companyName;
     }
 
-    public int getNumberOfEmployees() {
+    public double getNumberOfEmployees() {
         return numberOfEmployees;
     }
 
-    public void setNumberOfEmployees(int employees) {
+    public void setNumberOfEmployees(double employees) {
         this.numberOfEmployees = employees;
     }
 

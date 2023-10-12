@@ -2,21 +2,22 @@ package com.readcsv.dto.response;
 
 
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
 public class CustomerResponse {
 
-    private Date created;
+    private LocalDateTime created;
     private String companyName;
-    private int numberOfEmployees;
+    private double numberOfEmployees;
     private double employeesRating;
 
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
@@ -28,11 +29,11 @@ public class CustomerResponse {
         this.companyName = companyName;
     }
 
-    public int getNumberOfEmployees() {
+    public double getNumberOfEmployees() {
         return numberOfEmployees;
     }
 
-    public void setNumberOfEmployees(int numberOfEmployees) {
+    public void setNumberOfEmployees(double numberOfEmployees) {
         this.numberOfEmployees = numberOfEmployees;
     }
 
