@@ -1,12 +1,9 @@
 package com.readcsv.entity;
 
 
-import com.google.api.client.util.DateTime;
-import jakarta.persistence.*;
-;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 
 @Entity
@@ -16,14 +13,14 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "created")
+    @Column(name = "created_on")
     private LocalDateTime created;
     @Column(name = "name")
     private String companyName;
 
-    @Column(name = "employees")
+    @Column(name = "number_of_employee")
     private double numberOfEmployees;
-    @Column(name = "rating")
+    @Column(name = "employee_rating")
     private double employeesRating;
 
 

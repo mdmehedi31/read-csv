@@ -1,7 +1,6 @@
 package com.readcsv.service.impl;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.readcsv.dto.request.CustomerRequest;
 import com.readcsv.dto.response.CustomerResponse;
 import com.readcsv.entity.Customer;
@@ -42,7 +41,7 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
         List<CustomerRequest> customerList = CsvTOCustomer(list);
         this.customerRepository.saveAll(dtoToEntity(customerList));
 
-        if (used == true) {
+        if (used) {
             return "All Data Was Not Imported Correctly";
         }
         else {
@@ -191,7 +190,7 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
 
 
         for (CSVRecord record : csvRecordList) {
-            if (isValid(record) == true) {
+            if (isValid(record)) {
 
                 String name = record.get(0);
                 double employees = Double.parseDouble(record.get(1));
