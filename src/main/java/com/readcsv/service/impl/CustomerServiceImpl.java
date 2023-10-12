@@ -45,7 +45,9 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
         if (used == true) {
             return "All Data Was Not Imported Correctly";
         }
-        return "Save Successful";
+        else {
+            return "Save Successful";
+        }
     }
 
     /*
@@ -203,8 +205,8 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
             } else {
                 int i = 0;
                 if (i == 0) {
+                    i=1;
                     invalidNotification();
-                    i = 1;
                 }
             }
         }
