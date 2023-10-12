@@ -19,8 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.lang.reflect.Type;
-import java.time.LocalDateTime;
+
 import java.util.*;
 
 
@@ -204,7 +203,7 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
             } else {
                 int i = 0;
                 if (i == 0) {
-                    inValidNotification();
+                    invalidNotification();
                     i = 1;
                 }
             }
@@ -212,14 +211,11 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
             return customerList;
         }
 
-    private void inValidNotification() {
+    private void invalidNotification() {
 
         used=true;
 
     }
-
-        //|| (!record.get(1).isEmpty()) || (!record.get(1).isBlank())
-        // || (!record.get(2).isEmpty()) || (!record.get(2).isBlank())
 
         public boolean isValid (CSVRecord record){
 

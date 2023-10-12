@@ -20,9 +20,9 @@ public class CustomerControllerImpl implements CustomerControllerDef {
     public String uploadCSV(List<String[]> csvData) throws IOException {
 
 
-       String message= this.customerServiceDefinition.SaveCustomerInfo(csvData);
+       String responseMessage= this.customerServiceDefinition.SaveCustomerInfo(csvData);
 
-        return message;
+        return responseMessage;
     }
 
     @Override
