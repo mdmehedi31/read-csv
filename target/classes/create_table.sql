@@ -5,5 +5,5 @@ Create TABLE Customer(
     companyName varchar(30),
     numberOfEmployees int,
     employeesRating double precision,
-    created Date time
+    created_on Date time
 )

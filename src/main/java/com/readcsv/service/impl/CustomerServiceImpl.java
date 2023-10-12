@@ -225,7 +225,6 @@ public class CustomerServiceImpl implements CustomerServiceDefinition {
 
             if ((!record.get(0).isBlank()) || (!record.get(0).isEmpty()) || record != null) {
                 if (isDouble(record.get(1))) {
-
                     if (isDouble(record.get(2))) {
                         return true;
                     }
